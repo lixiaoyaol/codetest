@@ -6,7 +6,7 @@
 
 ### make project
 
-1. Install necesaary software: CMake, MinGW
+1. Install the required software: CMake, MinGW
 1. Create `CMakeLists.txt` at project directory
 1. `mkdir build`
 1. `cd build`
