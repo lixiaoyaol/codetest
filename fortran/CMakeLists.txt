@@ -6,4 +6,4 @@ set(CMAKE_BUILD_TYPE "Release")
 
 project(MyFortranProject LANGUAGES Fortran)
 
-add_executable(a test1.f90)
+add_executable(a test2.f90)
