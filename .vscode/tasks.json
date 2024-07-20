@@ -1,0 +1,26 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "type": "shell",
+            "label": "gfbuild",
+            // "command": "gfortran ./test/test23.f90 -g3 -O0 -fbacktrace -fcheck=all -ffpe-trap=zero  -Wall -Wextra -Warray-temporaries -Wconversion -ffree-line-length-0 -o ./test/build/a.exe"
+            "command": "gfortran",
+            "args": [
+                "${file}",
+                "-g3",
+                "-O0",
+                "-fbacktrace",
+                "-fcheck=all",
+                "-ffpe-trap=zero",
+                "-ffpe-trap=overflow",
+                "-Wall",
+                "-Wextra",
+                "-Warray-temporaries",
+                "-Wconversion",
+                "-ffree-line-length-0",
+                "-o",
+                "./test/build/a.exe"]
+        }
+    ]
+}
