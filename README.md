@@ -1,8 +1,8 @@
 # Code Tests
 
-##  For Python
+##  Python
 
-##  For Fortran
+##  Fortran
 
 ### make project
 
@@ -14,4 +14,4 @@
 1. `make`
 1. `make clean`
 
-##  For CPP
+##  CPP
