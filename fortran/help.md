@@ -91,7 +91,7 @@ VScode
 - Ctrl + c 光标放在这一行，复制整行
 - mkdir build
   - cd build
-  - `cmake -G "MinGW Makefiles" ..`
+  - `cmake -G "MinGW Makefiles" ..` 第一次使用时需指定生成器
   - make
   - ./a.exe
   
