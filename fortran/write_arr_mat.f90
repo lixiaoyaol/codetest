@@ -1,11 +1,8 @@
 module m1
     implicit none
-    interface write_matrix
-        module procedure write_matrix_real, write_matrix_int
-    end interface write_matrix
-    interface write_array
-        module procedure write_array_int, write_array_real
-    end interface write_array
+    interface write_arr_mat
+        module procedure write_array_int, write_array_real, write_matrix_int, write_matrix_real
+    end interface write_arr_mat
 
 contains
     subroutine write_matrix_real(matrix)
@@ -33,7 +30,6 @@ contains
         write(*, *)
 
     end subroutine write_matrix_int
-
 
     subroutine write_array_real(arr)
 
