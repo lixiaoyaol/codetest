@@ -7,7 +7,7 @@ module m1
 contains
     subroutine write_matrix_real(matrix)
 
-        real(kind=8), intent(in) :: matrix(:,:)
+        real(8), intent(in) :: matrix(:,:)
         integer :: i
 
         write(*, *)
@@ -20,7 +20,7 @@ contains
 
     subroutine write_matrix_int(matrix)
 
-        integer(kind=4), intent(in) :: matrix(:,:)
+        integer(4), intent(in) :: matrix(:,:)
         integer :: i
 
         write(*, *)
@@ -33,7 +33,7 @@ contains
 
     subroutine write_array_real(arr)
 
-        real(kind=8), intent(in) :: arr(:)
+        real(8), intent(in) :: arr(:)
 
         write(*, *)
         write(*, '(*(f13.6, 3x))') arr(:)
@@ -43,10 +43,10 @@ contains
 
     subroutine write_array_int(arr)
 
-        integer(kind=4), intent(in) :: arr(:)
+        integer(4), intent(in) :: arr(:)
 
         write(*, *)
-        write(*, '(*(i6, 3x))') arr(:)
+        write(*, '(*(I6, 3x))') arr(:)
         write(*, *)
 
     end subroutine write_array_int
