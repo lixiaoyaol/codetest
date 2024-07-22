@@ -1,7 +1,7 @@
-include 'write_arr_mat.f90'
+include 'write_array_matrix.f90'
 
 program main
-    use m1, only: write_arr_mat
+    use write_array_matrix, only: write_arr_mat
     implicit none
     integer :: a1(4),  bb(2,2)
     real(8) :: a2(9), cc(3,3)

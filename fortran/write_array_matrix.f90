@@ -1,4 +1,4 @@
-module m1
+module write_array_matrix
     implicit none
     interface write_arr_mat
         module procedure write_array_int, write_array_real, write_matrix_int, write_matrix_real
@@ -51,4 +51,4 @@ contains
 
     end subroutine write_array_int
 
-end module m1
+end module write_array_matrix
