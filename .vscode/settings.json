@@ -1,4 +1,5 @@
 {
     "cmake.configureOnOpen": false,
-    "cmake.sourceDirectory": "E:/gitrepo/codetest/fortran"
+    "cmake.sourceDirectory": "E:/gitrepo/codetest/fortran",
+    "cmake.ignoreCMakeListsMissing": true
 }
