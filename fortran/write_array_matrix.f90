@@ -5,27 +5,27 @@ module write_array_matrix
     end interface write_arr_mat
 
 contains
-    subroutine write_matrix_real(matrix)
+    subroutine write_matrix_real(mat)
 
-        real(8), intent(in) :: matrix(:,:)
+        real(8), intent(in) :: mat(:,:)
         integer :: i
 
         write(*, *)
-        do i = 1, size(matrix, 1)
-            write(*, '(*(f13.6, 3x))') matrix(i,:)
+        do i = 1, size(mat, 1)
+            write(*, '(*(f13.6, 3x))') mat(i,:)
         end do
         write(*, *)
 
     end subroutine write_matrix_real
 
-    subroutine write_matrix_int(matrix)
+    subroutine write_matrix_int(mat)
 
-        integer(4), intent(in) :: matrix(:,:)
+        integer(4), intent(in) :: mat(:,:)
         integer :: i
 
         write(*, *)
-        do i = 1, size(matrix, 1)
-            write(*, '(*(I8, 3x))') matrix(i,:)
+        do i = 1, size(mat, 1)
+            write(*, '(*(I8, 3x))') mat(i,:)
         end do
         write(*, *)
 
