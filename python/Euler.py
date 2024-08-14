@@ -8,11 +8,12 @@ x0 = np.linspace(0, 4, 100)
 y0 = np.exp(x0)
 
 # forward Euler method for solving ODEs
-nn = 100
+nn = 20
+h = 4. / nn
+
 x1 = np.linspace(0, 4, nn)
 y1 = np.zeros(nn)
 y1[0] = 1
-h = 4. / nn
 for i in range(1, nn):
     y1[i] = y1[i-1] + h * y1[i-1]
 
@@ -22,7 +23,6 @@ for i in range(1, nn):
 x2 = np.linspace(0, 4, nn)
 y2 = np.zeros(nn)
 y2[0] = 1
-h = 4. / nn
 for i in range(1, nn):
     y2[i] = y2[i-1] / (1 - h)
 
@@ -31,7 +31,6 @@ for i in range(1, nn):
 x3 = np.linspace(0, 4, nn)
 y3 = np.zeros(nn)
 y3[0] = 1
-h = 4. / nn
 for i in range(1, nn):
     y3[i] = y3[i-1] * (1+h/2.) / (1-h/2.)
 
