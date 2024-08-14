@@ -1,5 +1,10 @@
 {
     "cmake.configureOnOpen": false,
     "cmake.sourceDirectory": "E:/gitrepo/codetest/fortran",
-    "cmake.ignoreCMakeListsMissing": true
+    "cmake.ignoreCMakeListsMissing": true,
+    "files.associations": {
+        "*.for": "FortranFreeForm",
+        "*.f": "FortranFixedForm",
+        "iomanip": "cpp"
+    }
 }
