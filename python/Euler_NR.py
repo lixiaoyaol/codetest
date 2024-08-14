@@ -1,4 +1,4 @@
-# f'(x)=1+x+1./4x^2 f(0)=1 f(x)=1/(1-x)
+# f'(x)=sqrt(x) f(0)=1 f(x)=1+x+1./4x^2
 
 import numpy as np
 import matplotlib.pyplot as plt
