@@ -7,10 +7,10 @@ import matplotlib.pyplot as plt
 x0 = np.linspace(0, 4, 100)
 y0 = np.exp(x0)
 
-# forward Euler method for solving ODEs
 nn = 20
 h = 4. / nn
 
+# forward Euler method for solving ODEs
 x1 = np.linspace(0, 4, nn)
 y1 = np.zeros(nn)
 y1[0] = 1

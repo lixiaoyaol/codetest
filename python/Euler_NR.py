@@ -9,10 +9,10 @@ def f(x:np.ndarray) -> np.ndarray:
 x0 = np.linspace(0, 20, 100)
 y0 = f(x0)
 
-# # forward Euler method for solving ODEs
 nn = 50
 h = 20. / nn
 
+# # forward Euler method for solving ODEs
 x1 = np.linspace(0, 20, nn)
 y1 = np.zeros(nn)
 y1[0] = 1
