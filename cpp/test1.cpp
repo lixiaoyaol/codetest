@@ -18,7 +18,7 @@ int main()
     double toler = 1e-6;
     int itermax = 100;
 
-    for(int i=0; i<itermax; i++) {
+    for(int kiter=0; kiter<itermax; kiter++) {
         x0 = x0 - f(x0) / df(x0);
         if(abs(f(x0)) < toler) {
             break;
