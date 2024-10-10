@@ -7,5 +7,6 @@
 1. `test5.f90`: `write(unit,*)`的`unit`必须在显示的书写，不能通过一个变量传递。
 1. `test6.f90`: fortran2003及以后可以通过显示声明`value`属性来实现按值传递
 1. `test7.f90`： 一维数组变量传递时，可以只将首地址传递给子程序（首地址可以时arr(3)，数组中间元素）。在子程序中声明数组变量时指定数组维度。
+1. 默认情况下, `module`的所有成员都是`public`的, 也就是外部可以任意进行调用。[相关说明](https://blog.csdn.net/Sumbrella_/article/details/125833879)
 1. `test8.f90`: 数组可以直接使用 `*` 做逐元素相乘，`dot_product(aa, bb)` 等价于 `sum(aa * bb)`
   
