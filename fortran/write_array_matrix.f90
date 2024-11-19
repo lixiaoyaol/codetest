@@ -1,7 +1,10 @@
 module write_array_matrix
     implicit none
     interface write_arr_mat
-        module procedure write_array_int, write_array_real, write_matrix_int, write_matrix_real
+        module procedure write_array_int
+        module procedure write_array_real
+        module procedure write_matrix_int
+        module procedure write_matrix_real
     end interface write_arr_mat
 
 contains
