@@ -2,6 +2,7 @@
 
 ##  Python
 - `breakpoint()`
+- pydantic
 
 ##  Fortran
 
