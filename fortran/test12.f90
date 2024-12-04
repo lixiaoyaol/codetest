@@ -3,7 +3,7 @@ module ele_func
     
 contains
     elemental function add(a, b) result(c)
-        integer, intent(in) :: a, b
+        integer, intent(in) :: a, b !need intent(in) for elemental function
         integer :: c
 
         c = a + b
