@@ -11,4 +11,6 @@
 1. `test8.f90`: 数组可以直接使用 `*` 做逐元素相乘，`dot_product(aa, bb)` 等价于 `sum(aa * bb)`
 1. `test9.f90`：测试gfortran的gdb的用法
 1. `test10.f90`: 测试自定义数值精度
+1. `test11.f90`: 测试 pure function
+1. `test12.f90`: 测试 elemental function
   
