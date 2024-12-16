@@ -1,3 +1,5 @@
+!!> Elemental function and sunroutine test.
+
 module ele_func
     implicit none
     
