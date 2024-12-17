@@ -23,7 +23,7 @@ end module ele_func
 
 program main
 
-    use ele_func
+    use ele_func, only: add, add2
 
     implicit none
     integer :: a, b, c
