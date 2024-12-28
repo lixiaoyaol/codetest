@@ -2,12 +2,10 @@
 
 from odbAccess import *
 from abaqusConstants import *
-import math
-import os
 import numpy as np
 
 
-odbname = '20-UCP0.odb'
+odbname = '20-60.odb'
 instancename = 'SOLDER-1'
 odb = openOdb(odbname)
 instance = odb.rootAssembly.instances[instancename]
@@ -18,7 +16,7 @@ fmstress = []
 fmstrain = []
 fmenergy = []
 
-for ifm in range(len(odb.steps['Step-1'].frames)):
+for ifm, _ in enumerate(odb.steps['Step-1'].frames):
     lastfram = odb.steps['Step-1'].frames[ifm]
 
     stressdata = lastfram.fieldOutputs['S']
