@@ -232,7 +232,7 @@ def save_txt() -> None:
 
         print('Changes saved!')
 
-    messagebox.showinfo('Config', 'Changes saved!')
+    messagebox.showinfo('Config.txt', 'Changes Saved!')
 
 
 # Load and save buttons
