@@ -6,7 +6,6 @@ root = tk.Tk()
 # screen_w, screen_h = root.maxsize()
 # root.geometry(f'{int(0.6*screen_w)}x{int(0.6*screen_h)}')
 root.geometry('800x600')
-data_dict = {}
 
 
 def show_frm(sub_type):
@@ -137,14 +136,27 @@ fields_dmg = {
     'lambda': None,
     'rho': None,
     'ms': None,
-    'R': None,
-    'T': None
+    # 'R': None,
+    # 'T': None
 }
 var_dmg_trig = gen_trigger(frm7, 'Enable Damage')
 var_dmg_ls = gen_lab_ent(frm7, fields_dmg, 1)
+lab_dmg_rr = tk.Label(frm7, text='R')
+lab_dmg_tt = tk.Label(frm7, text='T')
+var_dmg_rr = tk.StringVar()
+var_dmg_tt = tk.StringVar()
+ent_dmg_rr = tk.Entry(frm7, textvariable=var_dmg_rr, state='readonly')
+ent_dmg_tt = tk.Entry(frm7, textvariable=var_dmg_tt, state='readonly')
+lab_dmg_rr.grid(row=4, column=0, padx=10)
+lab_dmg_tt.grid(row=5, column=0, padx=10)
+ent_dmg_rr.grid(row=4, column=1)
+ent_dmg_tt.grid(row=5, column=1)
+var_dmg_ls.append(var_dmg_rr)
+var_dmg_ls.append(var_dmg_tt)
+
 # frm7.pack(side='top', anchor='w')
 
-
+data_dict = {}
 config_path = None
 def open_txt() -> None:
     global config_path
