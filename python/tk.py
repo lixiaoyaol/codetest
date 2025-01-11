@@ -6,7 +6,7 @@ root = tk.Tk()
 # root.geometry(f'{int(0.6*screen_w)}x{int(0.6*screen_h)}')
 root.geometry('800x600')
 
-def show_sub_params(sub_type):
+def show_frm(sub_type):
     match sub_type:
         case 'UCP':
             frm4.pack(side='top', anchor='w', pady=10)
@@ -66,10 +66,10 @@ solver_type3.pack(side='left', anchor='n')
 frm2.pack(side='top', anchor='w')
 
 # Model parameters buttons
-btn_ucp = tk.Button(frm3, text='UCP Parameters', command=lambda: show_sub_params('UCP'))
-btn_iso = tk.Button(frm3, text='Isotropic Hardening Parameters', command=lambda: show_sub_params('ISO'))
-btn_kin = tk.Button(frm3, text='Kinematic Hardening Parameters', command=lambda: show_sub_params('KIN'))
-btn_dmg = tk.Button(frm3, text='Damage Parameters', command=lambda: show_sub_params('DMG'))
+btn_ucp = tk.Button(frm3, text='UCP Parameters', command=lambda: show_frm('UCP'))
+btn_iso = tk.Button(frm3, text='Isotropic Hardening Parameters', command=lambda: show_frm('ISO'))
+btn_kin = tk.Button(frm3, text='Kinematic Hardening Parameters', command=lambda: show_frm('KIN'))
+btn_dmg = tk.Button(frm3, text='Damage Parameters', command=lambda: show_frm('DMG'))
 btn_ucp.pack(side='left')
 btn_iso.pack(side='left')
 btn_kin.pack(side='left')
@@ -133,7 +133,7 @@ ent_iso_rb.grid(row=3, column=1)
 # frm5.pack(side='top', anchor='w')
 
 # Kinematic hardening parameters
-lab_iso_trig = tk.Label(frm6, text='Enable kintropic Hardening')
+lab_iso_trig = tk.Label(frm6, text='Enable Kinematic Hardening')
 var_kin_trig = tk.IntVar()
 btn_kin_trig = tk.Radiobutton(frm6, text='Yes', variable=var_kin_trig, value=0)
 btn_kin_trig2 = tk.Radiobutton(frm6, text='No', variable=var_kin_trig, value=1)
@@ -172,10 +172,12 @@ lab_dmg_ms.grid(row=3, column=0, padx=10)
 ent_dmg_ms.grid(row=3, column=1)
 lab_dmg_rr = tk.Label(frm7, text='R')
 ent_dmg_rr = tk.Entry(frm7)
+ent_dmg_rr.insert(0, '8.314')
 lab_dmg_rr.grid(row=4, column=0, padx=10)
 ent_dmg_rr.grid(row=4, column=1)
 lab_dmg_tt = tk.Label(frm7, text='T')
 ent_dmg_tt = tk.Entry(frm7)
+ent_dmg_tt.insert(0, '298')
 lab_dmg_tt.grid(row=5, column=0, padx=10)
 ent_dmg_tt.grid(row=5, column=1)
 # frm7.pack(side='top', anchor='w')
