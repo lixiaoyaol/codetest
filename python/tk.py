@@ -1,10 +1,13 @@
 import tkinter as tk
+from tkinter import filedialog
 
 root = tk.Tk()
 
 # screen_w, screen_h = root.maxsize()
 # root.geometry(f'{int(0.6*screen_w)}x{int(0.6*screen_h)}')
 root.geometry('800x600')
+data_dict = {}
+
 
 def show_frm(sub_type):
     match sub_type:
@@ -77,20 +80,20 @@ btn_dmg.pack(side='left')
 frm3.pack(side='top', anchor='w')
 
 def gen_lab_ent(frm, fields, start_row=0):
+    var_ls = [tk.StringVar() for _ in range(len(fields))]
     for i, (lab_text, dft_val) in enumerate(fields.items()):
         lab = tk.Label(frm, text=lab_text)
-        ent = tk.Entry(frm)
-        if dft_val:
-            ent.insert(0, dft_val)
+        ent = tk.Entry(frm, textvariable=var_ls[i])
         lab.grid(row=(i+start_row), column=0, padx=10)
         ent.grid(row=(i+start_row), column=1)
+    return var_ls
 
 
 def gen_trigger(frm, lab_text):
     lab = tk.Label(frm, text=lab_text)
     var = tk.IntVar()
-    btn = tk.Radiobutton(frm, text='Yes', variable=var, value=0)
-    btn2 = tk.Radiobutton(frm, text='No', variable=var, value=1)
+    btn = tk.Radiobutton(frm, text='Yes', variable=var, value=1)
+    btn2 = tk.Radiobutton(frm, text='No', variable=var, value=0)
     lab.grid(row=0, column=0, padx=10)
     btn.grid(row=0, column=1)
     btn2.grid(row=0, column=2)
@@ -103,10 +106,10 @@ fields_ucp = {
     'n': None,
     'd': None,
     'Q': None,
-    'R': 8.314,
-    'T': 298
+    'R': None,
+    'T': None
 }
-gen_lab_ent(frm4, fields_ucp)
+var_ucp_ls = gen_lab_ent(frm4, fields_ucp)
 frm4.pack(side='top', anchor='w', pady=10)
 
 
@@ -117,7 +120,7 @@ fields_iso = {
     'Rb': None
 }
 var_iso_trig = gen_trigger(frm5, 'Enable Isotropic Hardening')
-gen_lab_ent(frm5, fields_iso, 1)
+var_iso_ls = gen_lab_ent(frm5, fields_iso, 1)
 # frm5.pack(side='top', anchor='w')
 
 # Kinematic hardening parameters
@@ -126,7 +129,7 @@ fields_kin = {
     'beta': None
 }
 var_kin_trig = gen_trigger(frm6, 'Enable Kinematic Hardening')
-gen_lab_ent(frm6, fields_kin, 1)
+var_kin_ls = gen_lab_ent(frm6, fields_kin, 1)
 # frm6.pack(side='top', anchor='w')
 
 # Damage parameters
@@ -134,15 +137,60 @@ fields_dmg = {
     'lambda': None,
     'rho': None,
     'ms': None,
-    'R': 8.314,
-    'T': 298
+    'R': None,
+    'T': None
 }
 var_dmg_trig = gen_trigger(frm7, 'Enable Damage')
-gen_lab_ent(frm7, fields_dmg, 1)
+var_dmg_ls = gen_lab_ent(frm7, fields_dmg, 1)
 # frm7.pack(side='top', anchor='w')
 
+
+
+def open_txt() -> None:
+    """Open a file dialog to select a config file and print the path."""
+    config_path = filedialog.askopenfilename(
+        title='Select config file',
+        defaultextension='.txt',
+        filetypes=[('Text files', '*.txt')]
+    )
+    print(config_path)
+
+    with open(config_path, 'r') as f:
+        lines = f.readlines()
+        for line in lines:
+            if '=' not in line:
+                continue
+            key, val = line.strip().split('=')
+            data_dict[key] = val
+        print(data_dict)
+
+        var_ucp_ls[0].set(data_dict['ucp_aa'])
+        var_ucp_ls[1].set(data_dict['ucp_bb'])
+        var_ucp_ls[2].set(data_dict['ucp_nn'])
+        var_ucp_ls[3].set(data_dict['ucp_dd'])
+        var_ucp_ls[4].set(data_dict['ucp_qq'])
+        var_ucp_ls[5].set(data_dict['const_rr'])
+        var_ucp_ls[6].set(data_dict['const_tt'])
+
+        var_iso_trig.set(data_dict['iso_flag'])
+        var_iso_ls[0].set(data_dict['iso_r0'])
+        var_iso_ls[1].set(data_dict['iso_rinf'])
+        var_iso_ls[2].set(data_dict['iso_rb'])
+
+        var_kin_trig.set(data_dict['kin_flag'])
+        var_kin_ls[0].set(data_dict['kin_mu'])
+        var_kin_ls[1].set(data_dict['kin_beta'])
+
+        var_dmg_trig.set(data_dict['dmg_flag'])
+        var_dmg_ls[0].set(data_dict['dmg_lambda'])
+        var_dmg_ls[1].set(data_dict['dmg_rho'])
+        var_dmg_ls[2].set(data_dict['dmg_ms'])
+        var_dmg_ls[3].set(data_dict['const_rr'])
+        var_dmg_ls[4].set(data_dict['const_tt'])
+
+
 # Load and save buttons
-btn_load = tk.Button(frm8, text='Load Configurations')
+btn_load = tk.Button(frm8, text='Load Configurations', command=open_txt)
 btn_save = tk.Button(frm8, text='Save Changes')
 btn_load.pack(side='top', pady=10)
 btn_save.pack(side='top')
