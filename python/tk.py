@@ -165,29 +165,32 @@ def open_txt() -> None:
                 data_dict[key] = val
             # print(data_dict)
 
-            var_ucp_ls[0].set(data_dict['ucp_aa'])
-            var_ucp_ls[1].set(data_dict['ucp_bb'])
-            var_ucp_ls[2].set(data_dict['ucp_nn'])
-            var_ucp_ls[3].set(data_dict['ucp_dd'])
-            var_ucp_ls[4].set(data_dict['ucp_qq'])
-            var_ucp_ls[5].set(data_dict['const_rr'])
-            var_ucp_ls[6].set(data_dict['const_tt'])
+        var_ucp_ls[0].set(data_dict['ucp_aa'])
+        var_ucp_ls[1].set(data_dict['ucp_bb'])
+        var_ucp_ls[2].set(data_dict['ucp_nn'])
+        var_ucp_ls[3].set(data_dict['ucp_dd'])
+        var_ucp_ls[4].set(data_dict['ucp_qq'])
+        var_ucp_ls[5].set(data_dict['const_rr'])
+        var_ucp_ls[6].set(data_dict['const_tt'])
 
-            var_iso_trig.set(data_dict['iso_flag'])
-            var_iso_ls[0].set(data_dict['iso_r0'])
-            var_iso_ls[1].set(data_dict['iso_rinf'])
-            var_iso_ls[2].set(data_dict['iso_rb'])
+        var_iso_trig.set(data_dict['iso_flag'])
+        var_iso_ls[0].set(data_dict['iso_r0'])
+        var_iso_ls[1].set(data_dict['iso_rinf'])
+        var_iso_ls[2].set(data_dict['iso_rb'])
 
-            var_kin_trig.set(data_dict['kin_flag'])
-            var_kin_ls[0].set(data_dict['kin_mu'])
-            var_kin_ls[1].set(data_dict['kin_beta'])
+        var_kin_trig.set(data_dict['kin_flag'])
+        var_kin_ls[0].set(data_dict['kin_mu'])
+        var_kin_ls[1].set(data_dict['kin_beta'])
 
-            var_dmg_trig.set(data_dict['dmg_flag'])
-            var_dmg_ls[0].set(data_dict['dmg_lambda'])
-            var_dmg_ls[1].set(data_dict['dmg_rho'])
-            var_dmg_ls[2].set(data_dict['dmg_ms'])
-            var_dmg_ls[3].set(data_dict['const_rr'])
-            var_dmg_ls[4].set(data_dict['const_tt'])
+        var_dmg_trig.set(data_dict['dmg_flag'])
+        var_dmg_ls[0].set(data_dict['dmg_lambda'])
+        var_dmg_ls[1].set(data_dict['dmg_rho'])
+        var_dmg_ls[2].set(data_dict['dmg_ms'])
+        var_dmg_ls[3].set(data_dict['const_rr'])
+        var_dmg_ls[4].set(data_dict['const_tt'])
+    else:
+        messagebox.showerror('Config.txt', 'No file selected!')
+        
 
 def save_txt() -> None:
     if config_path:
@@ -221,8 +224,9 @@ def save_txt() -> None:
             f.write(f'dmg_ms={var_dmg_ls[2].get()}\n')
 
             print('Changes saved!')
-
         messagebox.showinfo('Config.txt', 'Changes Saved!')
+    else:
+        messagebox.showerror('Config.txt', 'No file selected!')
 
 
 # Load and save buttons
