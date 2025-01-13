@@ -154,73 +154,75 @@ def open_txt() -> None:
         filetypes=[('Text files', '*.txt')]
     )
     print(config_path)
+    
+    if config_path:
+        with open(config_path, 'r') as f:
+            lines = f.readlines()
+            for line in lines:
+                if '=' not in line:
+                    continue
+                key, val = line.strip().split('=')
+                data_dict[key] = val
+            # print(data_dict)
 
-    with open(config_path, 'r') as f:
-        lines = f.readlines()
-        for line in lines:
-            if '=' not in line:
-                continue
-            key, val = line.strip().split('=')
-            data_dict[key] = val
-        # print(data_dict)
+            var_ucp_ls[0].set(data_dict['ucp_aa'])
+            var_ucp_ls[1].set(data_dict['ucp_bb'])
+            var_ucp_ls[2].set(data_dict['ucp_nn'])
+            var_ucp_ls[3].set(data_dict['ucp_dd'])
+            var_ucp_ls[4].set(data_dict['ucp_qq'])
+            var_ucp_ls[5].set(data_dict['const_rr'])
+            var_ucp_ls[6].set(data_dict['const_tt'])
 
-        var_ucp_ls[0].set(data_dict['ucp_aa'])
-        var_ucp_ls[1].set(data_dict['ucp_bb'])
-        var_ucp_ls[2].set(data_dict['ucp_nn'])
-        var_ucp_ls[3].set(data_dict['ucp_dd'])
-        var_ucp_ls[4].set(data_dict['ucp_qq'])
-        var_ucp_ls[5].set(data_dict['const_rr'])
-        var_ucp_ls[6].set(data_dict['const_tt'])
+            var_iso_trig.set(data_dict['iso_flag'])
+            var_iso_ls[0].set(data_dict['iso_r0'])
+            var_iso_ls[1].set(data_dict['iso_rinf'])
+            var_iso_ls[2].set(data_dict['iso_rb'])
 
-        var_iso_trig.set(data_dict['iso_flag'])
-        var_iso_ls[0].set(data_dict['iso_r0'])
-        var_iso_ls[1].set(data_dict['iso_rinf'])
-        var_iso_ls[2].set(data_dict['iso_rb'])
+            var_kin_trig.set(data_dict['kin_flag'])
+            var_kin_ls[0].set(data_dict['kin_mu'])
+            var_kin_ls[1].set(data_dict['kin_beta'])
 
-        var_kin_trig.set(data_dict['kin_flag'])
-        var_kin_ls[0].set(data_dict['kin_mu'])
-        var_kin_ls[1].set(data_dict['kin_beta'])
-
-        var_dmg_trig.set(data_dict['dmg_flag'])
-        var_dmg_ls[0].set(data_dict['dmg_lambda'])
-        var_dmg_ls[1].set(data_dict['dmg_rho'])
-        var_dmg_ls[2].set(data_dict['dmg_ms'])
-        var_dmg_ls[3].set(data_dict['const_rr'])
-        var_dmg_ls[4].set(data_dict['const_tt'])
+            var_dmg_trig.set(data_dict['dmg_flag'])
+            var_dmg_ls[0].set(data_dict['dmg_lambda'])
+            var_dmg_ls[1].set(data_dict['dmg_rho'])
+            var_dmg_ls[2].set(data_dict['dmg_ms'])
+            var_dmg_ls[3].set(data_dict['const_rr'])
+            var_dmg_ls[4].set(data_dict['const_tt'])
 
 def save_txt() -> None:
-    with open(config_path, 'w') as f:
-        f.write('*Const\n')
-        f.write(f'const_rr={var_ucp_ls[5].get()}\n')
-        f.write(f'const_tt={var_ucp_ls[6].get()}\n')
+    if config_path:
+        with open(config_path, 'w') as f:
+            f.write('*Const\n')
+            f.write(f'const_rr={var_ucp_ls[5].get()}\n')
+            f.write(f'const_tt={var_ucp_ls[6].get()}\n')
 
-        f.write('\n*UCP\n')
-        f.write(f'ucp_aa={var_ucp_ls[0].get()}\n')
-        f.write(f'ucp_bb={var_ucp_ls[1].get()}\n')
-        f.write(f'ucp_nn={var_ucp_ls[2].get()}\n')
-        f.write(f'ucp_dd={var_ucp_ls[3].get()}\n')
-        f.write(f'ucp_qq={var_ucp_ls[4].get()}\n')
+            f.write('\n*UCP\n')
+            f.write(f'ucp_aa={var_ucp_ls[0].get()}\n')
+            f.write(f'ucp_bb={var_ucp_ls[1].get()}\n')
+            f.write(f'ucp_nn={var_ucp_ls[2].get()}\n')
+            f.write(f'ucp_dd={var_ucp_ls[3].get()}\n')
+            f.write(f'ucp_qq={var_ucp_ls[4].get()}\n')
 
-        f.write('\n*Iso\n')
-        f.write(f'iso_flag={var_iso_trig.get()}\n')
-        f.write(f'iso_r0={var_iso_ls[0].get()}\n')
-        f.write(f'iso_rinf={var_iso_ls[1].get()}\n')
-        f.write(f'iso_rb={var_iso_ls[2].get()}\n')
+            f.write('\n*Iso\n')
+            f.write(f'iso_flag={var_iso_trig.get()}\n')
+            f.write(f'iso_r0={var_iso_ls[0].get()}\n')
+            f.write(f'iso_rinf={var_iso_ls[1].get()}\n')
+            f.write(f'iso_rb={var_iso_ls[2].get()}\n')
 
-        f.write('\n*Kin\n')
-        f.write(f'kin_flag={var_kin_trig.get()}\n')
-        f.write(f'kin_mu={var_kin_ls[0].get()}\n')
-        f.write(f'kin_beta={var_kin_ls[1].get()}\n')
+            f.write('\n*Kin\n')
+            f.write(f'kin_flag={var_kin_trig.get()}\n')
+            f.write(f'kin_mu={var_kin_ls[0].get()}\n')
+            f.write(f'kin_beta={var_kin_ls[1].get()}\n')
 
-        f.write('\n*Damage\n')
-        f.write(f'dmg_flag={var_dmg_trig.get()}\n')
-        f.write(f'dmg_lambda={var_dmg_ls[0].get()}\n')
-        f.write(f'dmg_rho={var_dmg_ls[1].get()}\n')
-        f.write(f'dmg_ms={var_dmg_ls[2].get()}\n')
+            f.write('\n*Damage\n')
+            f.write(f'dmg_flag={var_dmg_trig.get()}\n')
+            f.write(f'dmg_lambda={var_dmg_ls[0].get()}\n')
+            f.write(f'dmg_rho={var_dmg_ls[1].get()}\n')
+            f.write(f'dmg_ms={var_dmg_ls[2].get()}\n')
 
-        print('Changes saved!')
+            print('Changes saved!')
 
-    messagebox.showinfo('Config.txt', 'Changes Saved!')
+        messagebox.showinfo('Config.txt', 'Changes Saved!')
 
 
 # Load and save buttons
