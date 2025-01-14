@@ -1,5 +1,27 @@
 module io
     implicit none
+    type, public :: par_const
+        real(8) :: rr, tt
+    end type par_const
+
+    type, public :: par_ucp
+        real(8) :: aa, bb, nn, dd, qq
+    end type par_ucp
+
+    type, public :: par_iso
+        integer :: iso_flag
+        real(8) :: r0, rinf, rb
+    end type par_iso
+
+    type, public :: par_kin
+        integer :: kin_flag
+        real(8) :: mu, beta
+    end type par_kin
+
+    type, public :: par_dmg
+        integer :: dmg_flag
+        real(8) :: lambda, rho, ms
+    end type par_dmg
     
 contains
 
@@ -11,8 +33,8 @@ contains
         character(len=32) :: str_val
 
         keyword = line(1:index(line, '=')-1)
-
         str_val = line(index(line, '=')+1:)
+
         read(str_val, *) value
     
     end subroutine parse_line
@@ -21,84 +43,79 @@ end module io
 
 
 program read_txt
-    use io, only: parse_line
+    use io, only: par_const, par_ucp, par_iso, par_kin, par_dmg, parse_line
     implicit none
     character(len=32) :: cline, var_name
     integer :: ios
-    real(8) :: rr, tt, aa, bb, nn, dd, qq, r0, rinf, rb, mu, beta, lambda, rho, ms
-    integer :: iso_flag, kin_flag, dmg_flag
+
+    type(par_const) :: pconst
+    type(par_ucp) :: pucp
+    type(par_iso) :: piso
+    type(par_kin) :: pkin
+    type(par_dmg) :: pdmg
+    real(8) :: val
 
     open(unit=10, file='config.txt', status='old', action='read')
-
-        read(10, '(a)', iostat=ios) cline
-        print *, cline
-        read(10, '(a9, f13.6)', iostat=ios) var_name, rr
-        print *, rr
+        !Const parameters
+        read(10, *)
         read(10, '(a)') cline
-        print *, cline
-        call parse_line(cline, var_name, tt)
-        print *, tt
-        print *, var_name
-        ! print *, index(cline, '=')
-        ! var_name = cline(index(cline, '=')+1:)
-        ! print *, var_name
-        ! read(var_name, *) tt
-        ! print *, tt
-        ! var_name = '2.d0'
-        ! read(var_name, *) tt
-        ! print *, tt
-        ! var_name = '2'
-        ! read(var_name, *) tt
-        ! print *, tt
+        call parse_line(cline, var_name, pconst%rr)
+        read(10, '(a)') cline
+        call parse_line(cline, var_name, pconst%tt)
 
+        !UCP parameters
+        read(10, *)
+        read(10, *)
+        read(10, '(a)') cline
+        call parse_line(cline, var_name, pucp%aa)
+        read(10, '(a)') cline
+        call parse_line(cline, var_name, pucp%bb)
+        read(10, '(a)') cline
+        call parse_line(cline, var_name, pucp%nn)
+        read(10, '(a)') cline
+        call parse_line(cline, var_name, pucp%dd)
+        read(10, '(a)') cline
+        call parse_line(cline, var_name, pucp%qq)
 
-        ! read(10, '(a9, f13.6)', iostat=ios) var_name, tt
-        ! print *, tt
-
-        ! read(10, '(a)', iostat=ios) cline
-        ! read(10, '(a)', iostat=ios) cline
-        ! read(10, '(a7, f13.6)', iostat=ios) var_name, aa
-        ! print *, aa
-        ! read(10, '(a7, f13.6)', iostat=ios) var_name, bb
-        ! print *, bb
-        ! read(10, '(a7, f13.6)', iostat=ios) var_name, nn
-        ! print *, nn
-        ! read(10, '(a7, f13.6)', iostat=ios) var_name, dd
-        ! print *, dd
-        ! read(10, '(a7, f13.6)', iostat=ios) var_name, qq
-        ! print *, qq
-
-        ! read(10, '(a)', iostat=ios) cline
-        ! read(10, '(a)', iostat=ios) cline
-        ! read(10, '(a9, i1)', iostat=ios) var_name, iso_flag
-        ! print *, iso_flag
-        ! read(10, '(a7, f13.6)', iostat=ios) var_name, r0
-        ! print *, r0
-        ! read(10, '(a9, f13.6)', iostat=ios) var_name, rinf
-        ! print *, rinf
-        ! read(10, '(a7, f13.6)', iostat=ios) var_name, rb
-        ! print *, rb
-
-        ! read(10, '(a)', iostat=ios) cline
-        ! read(10, '(a)', iostat=ios) cline
-        ! read(10, '(a9, i1)', iostat=ios) var_name, kin_flag
-        ! print *, kin_flag
-        ! read(10, '(a7, f13.6)', iostat=ios) var_name, mu
-        ! print *, mu
-        ! read(10, '(a9, f13.6)', iostat=ios) var_name, beta
-        ! print *, beta
-
-        ! read(10, '(a)', iostat=ios) cline
-        ! read(10, '(a)', iostat=ios) cline
-        ! read(10, '(a9, i1)', iostat=ios) var_name, dmg_flag
-        ! print *, dmg_flag
-        ! read(10, '(a11, f13.6)', iostat=ios) var_name, lambda
-        ! print *, lambda
-        ! read(10, '(a8, f13.6)', iostat=ios) var_name, rho
-        ! print *, rho
-        ! read(10, '(a7, f13.6)', iostat=ios) var_name, ms
-        ! print *, ms
+        !Iso parameters
+        read(10, *)
+        read(10, *)
+        read(10, '(a)') cline
+        call parse_line(cline, var_name, val)
+        piso%iso_flag = int(val)
+        read(10, '(a)') cline
+        call parse_line(cline, var_name, piso%r0)
+        read(10, '(a)') cline
+        call parse_line(cline, var_name, piso%rinf)
+        read(10, '(a)') cline
+        call parse_line(cline, var_name, piso%rb)
         
+        !Kin parameters
+        read(10, *)
+        read(10, *)
+        read(10, '(a)') cline
+        call parse_line(cline, var_name, val)
+        pkin%kin_flag = int(val)
+        read(10, '(a)') cline
+        call parse_line(cline, var_name, pkin%mu)
+        read(10, '(a)') cline
+        call parse_line(cline, var_name, pkin%beta)
+
+
+        !Damage parameters
+        read(10, *)
+        read(10, *)
+        read(10, '(a)') cline
+        call parse_line(cline, var_name, val)
+        pdmg%dmg_flag = int(val)
+        read(10, '(a)') cline
+        call parse_line(cline, var_name, pdmg%lambda)
+        read(10, '(a)') cline
+        call parse_line(cline, var_name, pdmg%rho)
+        read(10, '(a)') cline
+        call parse_line(cline, var_name, pdmg%ms)
+        print *, var_name, pdmg%ms
+
 
 
     close(10)
