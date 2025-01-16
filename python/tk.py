@@ -154,8 +154,11 @@ def open_txt() -> None:
         filetypes=[('Text files', '*.txt')]
     )
     print(config_path)
-    
+   
     if config_path:
+        with open('D:/umatconfigpath.txt', 'w', encoding='utf-8') as f:
+            f.write(config_path)
+    
         with open(config_path, 'r') as f:
             lines = f.readlines()
             for line in lines:
