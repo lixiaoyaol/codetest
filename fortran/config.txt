@@ -3,7 +3,7 @@ const_rr=8.314
 const_tt=298.0
 
 *UCP
-ucp_aa=5810.0
+ucp_aa=5.81d3
 ucp_bb=0.001
 ucp_nn=2.0
 ucp_dd=70.0

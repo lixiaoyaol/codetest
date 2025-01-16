@@ -120,7 +120,7 @@ end module io
 
 
 program read_txt
-    use io
+    use io, only: par_const, par_ucp, par_iso, par_kin, par_dmg, io_manager
     implicit none
     type(par_const) :: pconst
     type(par_ucp) :: pucp
