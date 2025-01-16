@@ -1,3 +1,12 @@
+# -*- coding: utf-8 -*-
+'''
+@Author  :   libofeng 
+@Mail    :   bf_li@qq.com
+@Time    :   2025/01/14 06:31:04
+@License :   All rights reserved
+@Desc    :   GUI for UCP Subroutine Controller
+'''
+
 import tkinter as tk
 from tkinter import filedialog, messagebox
 
