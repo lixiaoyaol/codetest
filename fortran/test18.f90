@@ -12,7 +12,7 @@ program test_getcwd
     implicit none
     character(len=64) :: cwd, fname1, fname2
 
-    fname1 = "test17.f90"
+    fname1 = "test18.f90"
     call getcwd(cwd)
 
     print *, trim(cwd)//'\'//trim(fname1)
