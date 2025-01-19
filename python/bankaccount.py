@@ -12,7 +12,11 @@ class BankAccount:
         self._balance += amount
 
     def withdraw(self, amount):
-        pass
+        if amount < 0:
+            raise ValueError('Withdraw amount must be non-negative')
+        if amount > self._balance:
+            raise ValueError('Withdraw amount must not exceed balance')
+        self._balance -= amount
 
     def get_interest(self):
         pass
