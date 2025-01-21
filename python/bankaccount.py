@@ -22,6 +22,6 @@ class BankAccount:
         url = 'https://www.bankofcanada.ca/valet/observations/FXUSDCAD/json'
         response = requests.get(url)
         if response.status_code == 200:
-            return response.json()['observations'][-1]['FXUSDCAD']
+            return response.json().get('rate')
         else:
             raise Exception('Failed to retrieve exchange rate')

@@ -39,13 +39,14 @@ class TestBankAccount(unittest.TestCase):
             self.account.withdraw(-50)
 
     def test_get_interest(self):
-        with patch('Bankaccount.requests.get') as mock_get:
+        """Test the get_interest method of BankAccount."""
+        with patch('bankaccount.requests.get') as mock_get:
             mock_get.return_value.status_code = 200
             mock_get.return_value.json.return_value = {
-                'observations': [{'FXUSDCAD': 1.2}]
+                'rate': 0.5
             }
             interest_rate = self.account.get_interest()
-            self.assertEqual(interest_rate, 1.2)
+            self.assertEqual(interest_rate, 0.5)
 
 if __name__ == '__main__':
     unittest.main()
