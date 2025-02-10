@@ -4,8 +4,8 @@ class A:
 
     def __repr__(self):
         return 'repr'
-    # def __str__(self):
-    #     return 'str'
+    def __str__(self):
+        return 'str'
     
 a = A()
 print(a)
