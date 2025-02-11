@@ -8,9 +8,19 @@ module m_tp
        
     end type t_mat
     
+    type :: t_2
+        real :: x
+    contains
+        procedure :: square
+    end type t_2
 
 
 contains
+    subroutine square(self, res)
+        class(t_2), intent(in) :: self
+        real, intent(out) :: res
+        res = self%x ** 2
+    end subroutine square
 
     
 end module m_tp
@@ -19,6 +29,7 @@ end module m_tp
 program tp
     use m_tp
     implicit none
+    real :: res
     ! type :: t_pair
     !     integer :: i
     !     real :: x
@@ -34,14 +45,17 @@ program tp
     ! print *, p3
 
     type(t_mat(2, 3)) :: m1, m2
+    type(t_2) :: aa2
+
     m1%values = (reshape([1.0, 2.0, 3.0, 4.0, 5.0, 6.0], [2, 3]))
 
+    aa2 = t_2(2.0)
 
+    call aa2%square(res)
 
+    print *, res
 
     print *, m1
-
-
 
 
 end program tp
