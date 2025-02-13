@@ -27,4 +27,12 @@ program test_pointer
     print *, phead%next%next%next%value
     print *, phead%next%next%next%next%value
 
+    do
+        pnode => phead
+        if (.not.associated(pnode)) exit
+        print *, pnode%value
+        phead => phead%next
+        
+    end do
+
 end program test_pointer
