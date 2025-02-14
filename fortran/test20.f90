@@ -32,7 +32,6 @@ program test_pointer
         if (.not.associated(pnode)) exit
         print *, pnode%value
         phead => phead%next
-        
     end do
 
 end program test_pointer
