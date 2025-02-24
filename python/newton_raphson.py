@@ -19,4 +19,5 @@ def df(x):
 x = 1
 while abs(f(x)) > 1e-6:
     x = x - f(x)/df(x)
-    print(x)
+    print('x :', x, 'f(x) :', f(x))
+

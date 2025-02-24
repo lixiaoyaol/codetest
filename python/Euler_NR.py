@@ -20,13 +20,19 @@ for i in range(1, nn):
     y1[i] = y1[i-1] + h * np.sqrt(y1[i-1])
 
 
+# Newton-Raphson iteration
+def newton_raphson(f, df, yn, h):
+    yn1 = yn
+    while abs(f(yn1, yn, h)) > 1e-6:
+        yn1 = yn1 - f(yn1, yn, h) / df(yn1, yn, h)
+    return yn1
 
 
 # # backward Euler method for solving ODEs
 def f2(yn1, yn, h):
     return h*np.sqrt(yn1) - yn1 + yn
 
-def df2(yn1, h):
+def df2(yn1, yn, h):
     return h*0.5*np.power(yn1,-0.5) - 1
 
 x2 = np.linspace(0, 20, nn)
@@ -34,14 +40,17 @@ y2 = np.zeros(nn)
 y2[0] = 1
 
 # newton-raphson iteration to solve y_{n+1}
-def nr(yn, h):
-    yn1 = yn
-    while abs(f2(yn1, yn, h)) > 1e-6:
-        yn1 = yn1 - f2(yn1, yn, h) / df2(yn1, h)
-    return yn1
+# def nr(yn, h):
+#     yn1 = yn
+#     while abs(f2(yn1, yn, h)) > 1e-6:
+#         yn1 = yn1 - f2(yn1, yn, h) / df2(yn1, yn, h)
+#     return yn1
+
+# for i in range(1, nn):
+#     y2[i] = nr(y2[i-1], h)
 
 for i in range(1, nn):
-    y2[i] = nr(y2[i-1], h)
+    y2[i] = newton_raphson(f2, df2, y2[i-1], h)
 
 
 
@@ -57,14 +66,17 @@ y3 = np.zeros(nn)
 y3[0] = 1
 
 # newton-raphson iteration to solve y_{n+1}
-def nr3(yn, h):
-    yn1 = yn
-    while abs(f3(yn1, yn, h)) > 1e-6:
-        yn1 = yn1 - f3(yn1, yn, h) / df3(yn1, yn, h)
-    return yn1
+# def nr3(yn, h):
+#     yn1 = yn
+#     while abs(f3(yn1, yn, h)) > 1e-6:
+#         yn1 = yn1 - f3(yn1, yn, h) / df3(yn1, yn, h)
+#     return yn1
+
+# for i in range(1, nn):
+#     y3[i] = nr3(y3[i-1], h)
 
 for i in range(1, nn):
-    y3[i] = nr(y2[i-1], h)
+    y3[i] = newton_raphson(f3, df3, y3[i-1], h)
 
 
 
