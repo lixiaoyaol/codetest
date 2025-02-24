@@ -3,12 +3,15 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
+# Theoretical solution of ODE
 def f(x:np.ndarray) -> np.ndarray:
     return np.array([1+xi+0.25*xi**2 for xi in x])
 
 x0 = np.linspace(0, 20, 100)
 y0 = f(x0)
 
+
+# Number of points and step size
 nn = 50
 h = 20. / nn
 
@@ -40,15 +43,6 @@ y2 = np.zeros(nn)
 y2[0] = 1
 
 # newton-raphson iteration to solve y_{n+1}
-# def nr(yn, h):
-#     yn1 = yn
-#     while abs(f2(yn1, yn, h)) > 1e-6:
-#         yn1 = yn1 - f2(yn1, yn, h) / df2(yn1, yn, h)
-#     return yn1
-
-# for i in range(1, nn):
-#     y2[i] = nr(y2[i-1], h)
-
 for i in range(1, nn):
     y2[i] = newton_raphson(f2, df2, y2[i-1], h)
 
@@ -66,23 +60,11 @@ y3 = np.zeros(nn)
 y3[0] = 1
 
 # newton-raphson iteration to solve y_{n+1}
-# def nr3(yn, h):
-#     yn1 = yn
-#     while abs(f3(yn1, yn, h)) > 1e-6:
-#         yn1 = yn1 - f3(yn1, yn, h) / df3(yn1, yn, h)
-#     return yn1
-
-# for i in range(1, nn):
-#     y3[i] = nr3(y3[i-1], h)
-
 for i in range(1, nn):
     y3[i] = newton_raphson(f3, df3, y3[i-1], h)
 
 
-
-
 ## plot figure
-
 fig, ax = plt.subplots()
 ax.plot(x0, y0, label=r'$y=1+x+\frac{1}{4}x^2$')
 ax.plot(x1, y1, label='Forward Euler')
