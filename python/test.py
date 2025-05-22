@@ -1,1 +1,3 @@
-print('test.py')
+import mypackage.mymoduleA
+
+print(dir(mypackage))
