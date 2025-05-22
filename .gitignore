@@ -7,3 +7,5 @@ python/liulu_data.csv
 python/liulu_train.csv
 python/liulu_valid.csv
 python/__pycache__/bankaccount.cpython-312.pyc
+python/mypackage/__pycache__/__init__.cpython-312.pyc
+python/mypackage/__pycache__/mymoduleA.cpython-312.pyc
