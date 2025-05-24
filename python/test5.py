@@ -1,3 +1,5 @@
+# This script simulates a seismic response spectrum analysis using a time-domain approach.
+
 import numpy as np
 import matplotlib.pyplot as plt
 
