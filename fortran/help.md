@@ -57,6 +57,14 @@ Command:
   - ctrl a ? 显示帮助
 
     ---
+- tmux
+  - tmux new -S name
+  - tmux ls
+  - tmux a
+  - tmux a -t 0
+  - tmux kill-session -t 0
+  - prefix d
+    ---
 
 - du -sh ~/* | sort -hr
 
